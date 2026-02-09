@@ -1,11 +1,14 @@
+
 import DayColumn from "./DayColumn"
 
-function TravelBoard(){
+function TravelBoard({  days = [], setDays  }){
+
+
     return(
         <div className="travel-board">
-            <DayColumn day="Dia 1"/>
-            <DayColumn day="Dia 2"/>
-            <DayColumn day="Dia 3" />
+            {days.map((day,index) => (
+                <DayColumn key={index} day = {day} index={index} setDays={setDays} />
+            ))}
         </div>
     )
 }
