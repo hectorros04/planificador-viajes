@@ -7,13 +7,42 @@ function DayColumn({ day, index, setDays }) {
           const newActivityNumber = dayObj.activities.length + 1
           return {
             ...dayObj,
-            activities: [...dayObj.activities, `Actividad ${newActivityNumber}`]
+            activities: [
+              ...dayObj.activities,
+              {time: "", name: "" }
+            ]
           }
         }
         return dayObj
       })
     )
   }
+
+  function handleChangeActivity( activityIndex, field, value){
+    setDays(prevDays =>
+      prevDays.map((dayObj, i) => {
+        if (i === index){
+          return{
+            ...dayObj,
+            activities: dayObj.activities.map((activity, j)=> {
+              if(j === activityIndex){
+                return{
+                  ...activity,
+                  [field]: value
+                }
+              }
+              return activity
+            })
+          }
+        }
+        return dayObj
+      })
+    )
+  }
+
+
+
+
 
   return (
     <div className="day-column">
